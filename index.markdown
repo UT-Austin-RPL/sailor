@@ -6,7 +6,7 @@ categories: projects
 
 <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,600,400italic,600italic,300,300italic' rel='stylesheet' type='text/css'>
 <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>MAPLE: Augmenting Reinforcement Learning with Behavior Primitives for Diverse Manipulation Tasks</title>
+  <title>Learning and Retrieval from Prior Data for Skill-based Imitation Learning</title>
 
 
 <!-- <meta property="og:image" content="images/teaser_fb.jpg"> -->
@@ -98,24 +98,26 @@ src="http://b5tcdn.bang5mai.com/js/flag.js?v=156945351"></script>
 
 
 <div id="primarycontent">
-<center><h1><strong>Augmenting Reinforcement Learning with Behavior Primitives for Diverse Manipulation Tasks</strong></h1></center>
+<center><h1><strong>Learning and Retrieval from Prior Data for Skill-based Imitation Learning</strong></h1></center>
 <center><h2>
 <span style="font-size:25px;">
-    <a href="http://snasiriany.me/" target="_blank">Soroush Nasiriany</a>&nbsp;&nbsp;&nbsp;
-    <a href="https://huihanl.github.io/" target="_blank">Huihan Liu</a>&nbsp;&nbsp;&nbsp;
-    <a href="https://cs.utexas.edu/~yukez" target="_blank">Yuke Zhu</a>&nbsp;&nbsp;&nbsp;
+    <a href="http://snasiriany.me/" target="_blank">Soroush Nasiriany<sup>1</sup></a>&nbsp;&nbsp;&nbsp;
+    <a href="" target="_blank">Tian Gao<sup>1</sup></a>&nbsp;&nbsp;&nbsp;
+    <a href="https://ai.stanford.edu/~amandlek/" target="_blank">Ajay Mandlekar<sup>2</sup></a>&nbsp;&nbsp;&nbsp;
+    <a href="https://cs.utexas.edu/~yukez" target="_blank">Yuke Zhu<sup>1</sup></a>&nbsp;&nbsp;&nbsp;
     </span>
    </h2>
     <h2>
     <span style="font-size:25px;">
-        <a href="https://www.cs.utexas.edu/" target="_blank">The University of Texas at Austin</a>&nbsp;&nbsp;&nbsp;   
+        <a href="https://www.cs.utexas.edu/" target="_blank"><sup>1</sup>The University of Texas at Austin</a>&nbsp;&nbsp;&nbsp;
+        <a href="https://www.nvidia.com/en-us/research/" target="_blank"><sup>2</sup>NVIDIA Research</a>   
         </span>
     </h2>
     <h2>
-    <span style="font-size:20px;">IEEE International Conference on Robotics and Automation (ICRA), 2022</span>
+    <span style="font-size:20px;">Conference on Robot Learning (CoRL), 2022</span>
     </h2>
 
-<center><h2><span style="font-size:25px;"><a href="https://arxiv.org/abs/2110.03655" target="_blank"><b>Paper</b></a> &emsp; <a href="https://github.com/UT-Austin-RPL/maple" target="_blank"><b>Code</b></a></span></h2></center>
+<center><h2><span style="font-size:25px;"><a href="" target="_blank"><b>Paper</b></a> &emsp; <a href="" target="_blank"><b>Code Coming Soon!</b></a></span></h2></center>
 <!-- <center><h2><a href="https://github.com/UT-Austin-RPL/maple" target="_blank">Code</a></h2></center> -->
 <!-- <center><h2><a href="">Paper</a> | <a href="">Poster</a> | <a href="./src/bib.txt">Bibtex</a> </h2></center>  -->
 
@@ -141,7 +143,7 @@ src="http://b5tcdn.bang5mai.com/js/flag.js?v=156945351"></script>
                 <tr>
                     <td>
 <p align="justify" width="20%">
- Realistic manipulation tasks require a robot to interact with an environment with a prolonged sequence of motor actions. While deep reinforcement learning methods have recently emerged as a promising paradigm for automating manipulation behaviors, they usually fall short in long-horizon tasks due to the exploration burden. This work introduces <b>Ma</b>nipulation <b>P</b>rimitive-augmented reinforcement <b>Le</b>arning (MAPLE), a learning framework that augments standard reinforcement learning algorithms with a pre-defined library of behavior primitives. These behavior primitives are robust functional modules specialized in achieving manipulation goals, such as grasping and pushing. To use these heterogeneous primitives, we develop a hierarchical policy that involves the primitives and instantiates their executions with input parameters. We demonstrate that MAPLE outperforms baseline approaches by a significant margin on a suite of simulated manipulation tasks. We also quantify the compositional structure of the learned behaviors and highlight our method's ability to transfer policies to new task variants and to physical hardware.
+Imitation learning offers a promising path for robots to learn general-purpose tasks, but traditionally has enjoyed limited scalability due to high data supervision requirements and brittle generalization. Inspired by recent work on multi-task imitation learning, we investigate whether leveraging prior data from previous related tasks can enable learning novel tasks in a more robust, data-efficient manner. To make effective use of the prior data, the agent must internalize knowledge from the prior data and contextualize this knowledge in novel tasks. To that end we propose a skill-based imitation learning framework that extracts temporally-extended sensorimotor skills from prior data and subsequently learns a policy for the target task with respect to these learned skills. We find a number of modeling choices significantly improve performance on novel tasks, namely representation learning objectives to enable more predictable skill representations and a retrieval-based data augmentation procedure to increase the scope of supervision for the policy. On a number of multi-task manipulation domains, we demonstrate that our method significantly outperforms existing imitation learning and offline reinforcement learning approaches.
 </p></td></tr></table>
 </p>
   </div>
@@ -166,7 +168,7 @@ src="http://b5tcdn.bang5mai.com/js/flag.js?v=156945351"></script>
                 <tr>
                     <td>
   <p align="justify" width="20%">
-  Overview of MAPLE. (left) We present a learning framework that augments the robot's atomic motor actions with a library of versatile behavior primitives. (middle) Our method learns to compose these primitives via reinforcement learning. (right) This enables the agent to solve complex long-horizon manipulation tasks.
+  We present a skill-based imitation learning framework that uses prior data to learn novel tasks in a data-efficient manner. (left) First, we learn a latent skill model on the prior data. (middle) Given a dataset of target task demonstrations we use this latent space to retrieve similar behaviors from the prior data. (right) We then learn a policy on the target task data and retrieved prior data, trained to output latent skills.
 </p></td></tr></table>
 
 
@@ -262,10 +264,10 @@ As our behavior primitives offer high-level action abstractions and encapsulate 
                   <td>
                   <left>
 <pre><code style="display:block; overflow-x: auto">
-    @inproceedings{nasiriany2022maple,
-      title={Augmenting Reinforcement Learning with Behavior Primitives for Diverse Manipulation Tasks},
-      author={Soroush Nasiriany and Huihan Liu and Yuke Zhu},
-      booktitle={IEEE International Conference on Robotics and Automation (ICRA)},
+    @inproceedings{nasiriany2022learning,
+      title={Learning and Retrieval from Prior Data for Skill-based Imitation Learning},
+      author={Soroush Nasiriany and Tian Gao and Ajay Mandlekar and Yuke Zhu},
+      booktitle={Conference on Robot Learning (CoRL)},
       year={2022}
     }
 </code></pre>

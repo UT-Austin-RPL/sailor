@@ -102,22 +102,23 @@ src="http://b5tcdn.bang5mai.com/js/flag.js?v=156945351"></script>
 <center><h2>
 <span style="font-size:25px;">
     <a href="http://snasiriany.me/" target="_blank">Soroush Nasiriany<sup>1</sup></a>&nbsp;&nbsp;&nbsp;
-    <a href="" target="_blank">Tian Gao<sup>1</sup></a>&nbsp;&nbsp;&nbsp;
-    <a href="https://ai.stanford.edu/~amandlek/" target="_blank">Ajay Mandlekar<sup>2</sup></a>&nbsp;&nbsp;&nbsp;
+    <a href="" target="_blank">Tian Gao<sup>1,2</sup></a>&nbsp;&nbsp;&nbsp;
+    <a href="https://ai.stanford.edu/~amandlek/" target="_blank">Ajay Mandlekar<sup>3</sup></a>&nbsp;&nbsp;&nbsp;
     <a href="https://cs.utexas.edu/~yukez" target="_blank">Yuke Zhu<sup>1</sup></a>&nbsp;&nbsp;&nbsp;
     </span>
    </h2>
     <h2>
     <span style="font-size:25px;">
         <a href="https://www.cs.utexas.edu/" target="_blank"><sup>1</sup>The University of Texas at Austin</a>&nbsp;&nbsp;&nbsp;
-        <a href="https://www.nvidia.com/en-us/research/" target="_blank"><sup>2</sup>NVIDIA Research</a>   
+        <a href="https://iiis.tsinghua.edu.cn/en/" target="_blank"><sup>2</sup>IIIS, Tsinghua</a>&nbsp;&nbsp;&nbsp;
+        <a href="https://www.nvidia.com/en-us/research/" target="_blank"><sup>3</sup>NVIDIA Research</a>   
         </span>
     </h2>
     <h2>
     <span style="font-size:20px;">Conference on Robot Learning (CoRL), 2022</span>
     </h2>
 
-<center><h2><span style="font-size:25px;"><a href="" target="_blank"><b>Paper</b></a> &emsp; <a href="" target="_blank"><b>Code Coming Soon!</b></a></span></h2></center>
+<center><h2><span style="font-size:25px;"><a href="" target="_blank"><b>Paper</b></a> &emsp; <a href="" target="_blank"><b>Code (coming soon)</b></a></span></h2></center>
 <!-- <center><h2><a href="https://github.com/UT-Austin-RPL/maple" target="_blank">Code</a></h2></center> -->
 <!-- <center><h2><a href="">Paper</a> | <a href="">Poster</a> | <a href="./src/bib.txt">Bibtex</a> </h2></center>  -->
 
@@ -143,7 +144,7 @@ src="http://b5tcdn.bang5mai.com/js/flag.js?v=156945351"></script>
                 <tr>
                     <td>
 <p align="justify" width="20%">
-Imitation learning offers a promising path for robots to learn general-purpose tasks, but traditionally has enjoyed limited scalability due to high data supervision requirements and brittle generalization. Inspired by recent work on multi-task imitation learning, we investigate whether leveraging prior data from previous related tasks can enable learning novel tasks in a more robust, data-efficient manner. To make effective use of the prior data, the agent must internalize knowledge from the prior data and contextualize this knowledge in novel tasks. To that end we propose a skill-based imitation learning framework that extracts temporally-extended sensorimotor skills from prior data and subsequently learns a policy for the target task with respect to these learned skills. We find a number of modeling choices significantly improve performance on novel tasks, namely representation learning objectives to enable more predictable skill representations and a retrieval-based data augmentation procedure to increase the scope of supervision for the policy. On a number of multi-task manipulation domains, we demonstrate that our method significantly outperforms existing imitation learning and offline reinforcement learning approaches.
+Imitation learning offers a promising path for robots to learn general-purpose behaviors, but traditionally has exhibited limited scalability due to high data supervision requirements and brittle generalization. Inspired by recent advances in multi-task imitation learning, we investigate the use of prior data from previous tasks to facilitate learning novel tasks in a robust, data-efficient manner. To make effective use of the prior data, the robot must internalize knowledge from past experiences and contextualize this knowledge in novel tasks. To that end, we develop a skill-based imitation learning framework that extracts temporally extended sensorimotor skills from prior data and subsequently learns a policy for the target task that invokes these learned skills. We identify several key design choices that significantly improve performance on novel tasks, namely representation learning objectives to enable more predictable skill representations and a retrieval-based data augmentation mechanism to increase the scope of supervision for policy training. On a collection of simulated and real-world manipulation domains, we demonstrate that our method significantly outperforms existing imitation learning and offline reinforcement learning approaches.
 </p></td></tr></table>
 </p>
   </div>
@@ -168,67 +169,118 @@ Imitation learning offers a promising path for robots to learn general-purpose t
                 <tr>
                     <td>
   <p align="justify" width="20%">
-  We present a skill-based imitation learning framework that uses prior data to learn novel tasks in a data-efficient manner. (left) First, we learn a latent skill model on the prior data. (middle) Given a dataset of target task demonstrations we use this latent space to retrieve similar behaviors from the prior data. (right) We then learn a policy on the target task data and retrieved prior data, trained to output latent skills.
+  We present a skill-based imitation learning framework that uses prior data to effectively learn novel tasks. First, we learn a latent skill model on the prior data, with objectives to ensure a predictable skill representation. Given target task demonstrations, we use this latent space to retrieve similar behaviors from the prior data, expanding supervision for the policy. We then train a policy which outputs latent skills.
 </p></td></tr></table>
 
 
-<br><hr> <h1 align="center" style="width:80%;">Skill-based Imitation Learning with Retrieval</h1>
-
-<table width=800px><tr><td> <p align="justify" width="20%">
-Our method consists of a skill learning and policy learning phase. (left) In the
-skill learning phase we learn a latent skill representation of sub-trajectories via a variational autoencoder, and we include an additional temporal predictability term to learn a more consistent latent representation. (right) In the policy learning phase we train the policy to predict the latent skill given a history of observations preceding the sub-trajectory. To execute the policy we decode the predicted latent using the skill decoder.</p></td></tr></table>
+<br><hr> <h1 align="center" style="width:80%;">Skill-based Imitation Learning Model</h1>
 
 <table border="0" cellspacing="10"
 cellpadding="0" align="center"><tbody><tr><td align="center"
 valign="middle"><img
 src="./src/model.png" style="width:90%;"></td>
 </tr> </tbody> </table>
+
+<table width=800px><tr><td> <p align="justify" width="20%">
+Our method consists of a skill learning and policy learning phase. (left) In the
+skill learning phase we learn a latent skill representation of sub-trajectories in the prior dataset via a variational autoencoder, and we include an additional temporal predictability term to learn a more consistent latent representation. (right) In the policy learning phase we train the policy to predict the latent skill given a history of observations preceding the sub-trajectory. To execute the policy we decode the predicted latent using the skill decoder. We train the policy on sub-trajectories in the target task dataset in addition to retrieved sub-trajectories from the prior dataset.</p></td></tr></table>
+
 <br>
 
 <hr>
 
-<!--
-<h1 align="center">Simulated Environment Evaluation</h1>
+<h1 align="center">Simulated and Real-world Manipulation Domains</h1>
 
 <table border="0" cellspacing="10" cellpadding="0" align="center">
   <tbody><tr><td>
-  <p align="justify" width="20%">We perform evaluations on eight manipulation tasks. The first six come from the <a href="http://robosuite.ai/" target="_blank"> robosuite benchmark</a>, and we designed the last two (cleanup, peg insertion) to test our method in multi-stage, contact-rich tasks.</p>
+
+    <tr>
+        <td style="width:50%">
+          <h2 align="center">Franka Kitchen</h2>
+        </td>
+        <td style="width:50%">
+          <h2 align="center">CALVIN</h2>
+        </td>
+    </tr>
+    <tr>
+      <td style="width:50%">
+      <video muted autoplay loop width="100%">
+          <source src="./src/franka_kitchen.mp4"  type="video/mp4">
+      </video>
+      </td>
+      <td style="width:50%">
+      <video muted autoplay loop width="100%">
+          <source src="./src/calvin.mp4"  type="video/mp4">
+      </video>
+      </td>
+    </tr>
 </td></tr>
 </tbody>
 </table>
-<video muted autoplay loop width="80%">
-    <source src="./src/envs_animated_trimmed.mp4"  type="video/mp4">
-</video>
+
+<!-- <table border="0" cellspacing="10" cellpadding="0" align="center">
+  <tbody><tr><td>
+
+    <tr>
+        <td style="width:100%">
+          <h2 align="center">Real Kitchen</h2>
+        </td>
+    </tr>
+</td></tr>
+</tbody>
+</table> -->
+
+<table border="0" cellspacing="10" cellpadding="0" align="center">
+  <tbody><tr><td>
+
+    <!-- <tr>
+        <td style="width:100%">
+          <h2 align="center">Real Kitchen</h2>
+        </td>
+    </tr> -->
+    <tr>
+        <td style="width:45%">
+          <h2 align="center">Real Kitchen: Prior Data</h2>
+        </td>
+        <td style="width:55%">
+          <h2 align="center">Real Kitchen: Target Tasks</h2>
+        </td>
+    </tr>
+    <tr>
+        <td style="width:45%">
+        <video muted autoplay loop width="98%">
+            <source src="./src/real_kitchen_prior.mp4"  type="video/mp4">
+        </video>
+        </td>
+        <td style="width:55%">
+        <video muted autoplay loop width="100%">
+            <source src="./src/real_kitchen_target.mp4"  type="video/mp4">
+        </video>
+        </td>
+    </tr>
+</td></tr>
+</tbody>
+</table>
+
+<br>
+<hr> <h1 align="center">Simulation Results</h1>
 
 <table width=800px><tr><td> <p align="justify" width="20%">
 <br>
-We compare MAPLE to five baselines, including a method that only employs low-level motor actions (<b>Atomic</b>), a state-of-the-art hierarchical DRL method that learns low-level options along with high-level controllers (<b>DAC</b>), methods that employ alternative policy modeling designs (<b>Flat</b> and <b>Open Loop</b>), and a self-baseline of our method that excludes low-level motor actions (<b>MAPLE (Non-Atomic)</b>).
-We find that MAPLE significantly outperforms these baselines.
+We evaluate our method against a set of six baselines and report the mean task success rate and standard deviation over three seeds (exception: six seeds for BC-RNN (FT) due to high variance). Note: for the kitchen tasks we report one number for baselines that do not involve prior data. We see that our method significantly outperforms the baselines on all tasks.
 </p></td></tr></table>
-<img src="./src/quant_results.png" style="width:80%;">
+<img src="./src/quant_results.png" style="width:100%;">
 
-<table width=800px><tr><td> <p align="justify" width="20%">
+<!-- <table width=800px><tr><td> <p align="justify" width="20%">
 <br> <br>
 For reference, we visualize sample rollouts on the peg insertion task across all baselines:
 </p></td></tr></table>
 <video muted autoplay loop width="100%">
     <source src="./src/peg_insertion_cropped.mp4"  type="video/mp4">
-</video>
-
+</video> -->
+<!--
 <br>
 <hr> <h1 align="center">Model Analysis</h1>
-
-<table width=800px><tr><td> <p align="justify" width="20%">
-We present an analysis of the task sketches that our method learned for each task.
-Each row corresponds to a single sketch progressing temporally from left to right.
-We see evidence that the agent unveils compositional task structures by applying temporally extended primitives whenever appropriate and relying on atomic actions otherwise.
-For example, for the peg insertion task the agent leverages the grasping primitive to pick up the peg and the reaching primitive to align the peg with the hole in the block, but then it uses atomic actions for the contact-rich insertion phase.
-<br>
-<center><b>(click image to view full resolution)</b></center>
-</p></td></tr></table>
-
-<a href="./src/learned_sketches.png" target="_blank"> <img
-src="./src/learned_sketches.png" style="width:100%;"> </a>
 
 <br><hr>
 <h1 align="center">Real-World Evaluation</h1>

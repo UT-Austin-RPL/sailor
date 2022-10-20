@@ -172,26 +172,22 @@ Imitation learning offers a promising path for robots to learn general-purpose t
 </p></td></tr></table>
 
 
-<br><hr> <h1 align="center" style="width:80%;">Integrating Heterogeneous Primitives with a Hierarchical Policy</h1>
+<br><hr> <h1 align="center" style="width:80%;">Skill-based Imitation Learning with Retrieval</h1>
 
 <table width=800px><tr><td> <p align="justify" width="20%">
-Our goal is to incorporate a heterogeneous set of primitives that take input parameters of different dimensions, operate at variable temporal lengths, and produce distinct behaviors.
-To that end we adopt a hierarchical policy, where at the high level a <i>task policy</i> determines the primitive type and at the low level a <i>parameter policy</i> determines the corresponding primitive parameters.
-<!-- For implementation, we represent the task policy as a single neural network and the parameter policy as a collection of sub-networks, with one sub-network dedicated for each primitive. -->
-<!-- This enables us to accommodate primitives with heterogeneous parameterizations. -->
-<!-- To allow computation across primitives with different parameter dimensions, these parameter policy sub-networks all output "one size fits all" parameters with the maximum possible dimension over all primitives. -->
-<!-- At primitive execution we simply truncate the parameters to the length of the chosen primitive. -->
-Our hierarchical design facilitates modular reasoning, delegating the high-level to focus on <i>which</i> primitive to execute and the low-level to focus on <i>how</i> to instantiate that primitive.</p></td></tr></table>
+Our method consists of a skill learning and policy learning phase. (left) In the
+skill learning phase we learn a latent skill representation of sub-trajectories via a variational autoencoder, and we include an additional temporal predictability term to learn a more consistent latent representation. (right) In the policy learning phase we train the policy to predict the latent skill given a history of observations preceding the sub-trajectory. To execute the policy we decode the predicted latent using the skill decoder.</p></td></tr></table>
 
 <table border="0" cellspacing="10"
 cellpadding="0" align="center"><tbody><tr><td align="center"
 valign="middle"><img
-src="./src/policy_architecture.png" style="width:90%;"></td>
+src="./src/model.png" style="width:90%;"></td>
 </tr> </tbody> </table>
 <br>
 
 <hr>
 
+<!--
 <h1 align="center">Simulated Environment Evaluation</h1>
 
 <table border="0" cellspacing="10" cellpadding="0" align="center">
@@ -222,19 +218,11 @@ For reference, we visualize sample rollouts on the peg insertion task across all
 <br>
 <hr> <h1 align="center">Model Analysis</h1>
 
-<!-- <table border="0" cellspacing="10"
-cellpadding="0" align="center"><tbody><tr><td align="center"
-valign="middle"><a href="./src/learned_sketches.png"> <img
-src="./src/learned_sketches.png" style="width:120%;"> </a></td>
-</tr> </tbody> </table> -->
-
 <table width=800px><tr><td> <p align="justify" width="20%">
 We present an analysis of the task sketches that our method learned for each task.
 Each row corresponds to a single sketch progressing temporally from left to right.
 We see evidence that the agent unveils compositional task structures by applying temporally extended primitives whenever appropriate and relying on atomic actions otherwise.
 For example, for the peg insertion task the agent leverages the grasping primitive to pick up the peg and the reaching primitive to align the peg with the hole in the block, but then it uses atomic actions for the contact-rich insertion phase.
-<!-- We also quantify the degree to which these task sketches are compositional via the compositionality score <i>f<sub>comp</sub></i>  (see paper for details).
-As we can see, tasks involving contact interactions such as Peg Insertion and Wiping have lower scores than prehensile tasks such as Pick and Place and Stacking. -->
 <br>
 <center><b>(click image to view full resolution)</b></center>
 </p></td></tr></table>
@@ -252,11 +240,12 @@ As our behavior primitives offer high-level action abstractions and encapsulate 
     <source src="./src/cleanup_real.mp4"  type="video/mp4">
 </video>
 
+-->
+
 
 <br>
 <br>
 <hr>
-<!-- <table align=center width=800px> <tr> <td> <left> -->
 <center><h1>Citation</h1></center>
 
 <table align=center width=800px>

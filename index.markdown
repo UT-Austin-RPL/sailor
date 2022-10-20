@@ -278,22 +278,52 @@ For reference, we visualize sample rollouts on the peg insertion task across all
 <video muted autoplay loop width="100%">
     <source src="./src/peg_insertion_cropped.mp4"  type="video/mp4">
 </video> -->
-<!--
 <br>
-<hr> <h1 align="center">Model Analysis</h1>
+<hr>
 
-<br><hr>
 <h1 align="center">Real-World Evaluation</h1>
 <table width=800px><tr><td> <p align="justify" width="20%">
-As our behavior primitives offer high-level action abstractions and encapsulate low-level complexities of motor actuation, our policies can directly transfer to the real world. We trained MAPLE on simulated versions of the stack and cleanup tasks and executed the resulting policies to the real world. Here we show rollouts on the cleanup task (played at 5x).
+We evaluate our method against the most competitive baseline, BC-RNN (FT). We find that while on the breakfast making task both methods achieve a success rate of 76.7%, on the cooking task our method significantly outperforms BC-RNN (FT) with a success rate of 76.7% vs. 46.7%:
 </p></td></tr></table>
 
-<video muted controls width="80%">
-    <source src="./src/cleanup_real.mp4"  type="video/mp4">
-</video>
 
--->
+<table border="0" cellspacing="10" cellpadding="0" align="center">
+  <tbody><tr><td>
 
+    <tr>
+        <td style="width:100%">
+          <h2 align="center">BC-RNN (FT): 46.7%</h2>
+        </td>
+    </tr>
+    <tr>
+        <td style="width:100%">
+        <video muted autoplay loop width="100%">
+            <source src="./src/real_cook_bc_rnn_ft.mp4"  type="video/mp4">
+        </video>
+        </td>
+    </tr>
+</td></tr>
+</tbody>
+</table>
+
+<table border="0" cellspacing="10" cellpadding="0" align="center">
+  <tbody><tr><td>
+
+    <tr>
+        <td style="width:100%">
+          <h2 align="center">Ours: 76.7%</h2>
+        </td>
+    </tr>
+    <tr>
+        <td style="width:100%">
+        <video muted autoplay loop width="100%">
+            <source src="./src/real_cook_ours.mp4"  type="video/mp4">
+        </video>
+        </td>
+    </tr>
+</td></tr>
+</tbody>
+</table>
 
 <br>
 <br>
@@ -305,7 +335,7 @@ As our behavior primitives offer high-level action abstractions and encapsulate 
                   <td>
                   <left>
 <pre><code style="display:block; overflow-x: auto">
-    @inproceedings{nasiriany2022learning,
+    @inproceedings{nasiriany2022sailor,
       title={Learning and Retrieval from Prior Data for Skill-based Imitation Learning},
       author={Soroush Nasiriany and Tian Gao and Ajay Mandlekar and Yuke Zhu},
       booktitle={Conference on Robot Learning (CoRL)},

@@ -236,6 +236,8 @@ We perform empirical evaluations on two simulated robot manipulation domains:
 </tbody>
 </table> -->
 
+<br>
+<br>
 <table width=800px><tr><td> <p align="justify" width="20%">
 We also evaluate our method in the real world with a kitchen environment involving eight food items, receptacles, a stove, and a serving area. We first collect a play dataset of exploratory interactions involving the food items and receptacles. For our target tasks, we consider setting up breakfast, and cooking a meal.
 </p></td></tr></table>
@@ -280,6 +282,12 @@ We also evaluate our method in the real world with a kitchen environment involvi
 We evaluate our method against a set of six baselines and report the mean task success rate and standard deviation over three seeds (exception: six seeds for BC-RNN (FT) due to high variance). Note: for the kitchen tasks we report one number for baselines that do not involve prior data. We see that our method significantly outperforms the baselines on all tasks.
 </p></td></tr></table>
 <img src="./src/quant_results.png" style="width:100%;">
+
+<table width=800px><tr><td> <p align="justify" width="20%">
+<br>
+In our ablation study, we find that temporal predictability and retrieval are critical to skill-based imitation learning. In addition we validate that prior data plays a large role in the performance of our method.
+</p></td></tr></table>
+<img src="./src/ablation_results.png" style="width:75%;">
 
 <!-- <table width=800px><tr><td> <p align="justify" width="20%">
 <br> <br>

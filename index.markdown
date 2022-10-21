@@ -98,7 +98,7 @@ src="http://b5tcdn.bang5mai.com/js/flag.js?v=156945351"></script>
 
 
 <div id="primarycontent">
-<center><h1><strong>Learning and Retrieval from Prior Data for Skill-based Imitation Learning</strong></h1></center>
+<center><h1><strong>Learning and Retrieval from Prior Data <br> for Skill-based Imitation Learning</strong></h1></center>
 <center><h2>
 <span style="font-size:25px;">
     <a href="http://snasiriany.me/" target="_blank">Soroush Nasiriany<sup>1</sup></a>&nbsp;&nbsp;&nbsp;

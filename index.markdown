@@ -118,7 +118,7 @@ src="http://b5tcdn.bang5mai.com/js/flag.js?v=156945351"></script>
     <span style="font-size:20px;">Conference on Robot Learning (CoRL), 2022</span>
     </h2>
 
-<center><h2><span style="font-size:25px;"><a href="" target="_blank"><b>Paper</b></a> &emsp; <a href="" target="_blank"><b>Code (coming soon)</b></a></span></h2></center>
+<center><h2><span style="font-size:25px;"><a href="https://arxiv.org/abs/2210.11435" target="_blank"><b>Paper</b></a> &emsp; <a href="" target="_blank"><b>Code (coming soon)</b></a></span></h2></center>
 <!-- <center><h2><a href="https://github.com/UT-Austin-RPL/maple" target="_blank">Code</a></h2></center> -->
 <!-- <center><h2><a href="">Paper</a> | <a href="">Poster</a> | <a href="./src/bib.txt">Bibtex</a> </h2></center>  -->
 

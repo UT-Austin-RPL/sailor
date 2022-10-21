@@ -278,13 +278,14 @@ We also evaluate our method in the real world with a kitchen environment involvi
 <hr> <h1 align="center">Simulation Results</h1>
 
 <table width=800px><tr><td> <p align="justify" width="20%">
-<br>
 We evaluate our method against a set of six baselines and report the mean task success rate and standard deviation over three seeds (exception: six seeds for BC-RNN (FT) due to high variance). Note: for the kitchen tasks we report one number for baselines that do not involve prior data. We see that our method significantly outperforms the baselines on all tasks.
 </p></td></tr></table>
 <img src="./src/quant_results.png" style="width:100%;">
 
-<table width=800px><tr><td> <p align="justify" width="20%">
 <br>
+<br>
+
+<table width=800px><tr><td> <p align="justify" width="20%">
 In our ablation study, we find that temporal predictability and retrieval are critical to skill-based imitation learning. In addition we validate that prior data plays a large role in the performance of our method.
 </p></td></tr></table>
 <img src="./src/ablation_results.png" style="width:75%;">

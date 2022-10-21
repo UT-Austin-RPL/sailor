@@ -201,20 +201,20 @@ We perform empirical evaluations on two simulated robot manipulation domains:
   <tbody><tr><td>
 
     <tr>
-        <td style="width:50%">
+        <td style="width:45%">
           <h2 align="center">Franka Kitchen</h2>
         </td>
-        <td style="width:50%">
+        <td style="width:55%">
           <h2 align="center">CALVIN</h2>
         </td>
     </tr>
     <tr>
-      <td style="width:50%">
+      <td style="width:45%">
       <video muted autoplay loop width="100%">
           <source src="./src/franka_kitchen.mp4"  type="video/mp4">
       </video>
       </td>
-      <td style="width:50%">
+      <td style="width:55%">
       <video muted autoplay loop width="100%">
           <source src="./src/calvin.mp4"  type="video/mp4">
       </video>

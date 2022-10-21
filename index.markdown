@@ -191,6 +191,12 @@ skill learning phase we learn a latent skill representation of sub-trajectories 
 
 <h1 align="center">Simulated and Real-world Manipulation Domains</h1>
 
+<table width=800px><tr><td> <p align="justify" width="20%">
+We perform empirical evaluations on two simulated robot manipulation domains:
+
+(left) Franka Kitchen involves different sub-tasks, such as opening cabinets, moving a kettle, and turning on a stove. Our prior dataset contains demonstrations for different sub-tasks, and the target task involves a specific permutation of four sub-tasks. (right) CALVIN: playroom environment accompanied by task-agnostic “play” with diverse behaviors, such as opening and closing drawers, turning on and off the lights, and picking, placing, and pushing blocks. We consider two target tasks: setting up the table and cleaning up the table.
+</p></td></tr></table>
+
 <table border="0" cellspacing="10" cellpadding="0" align="center">
   <tbody><tr><td>
 
@@ -229,6 +235,10 @@ skill learning phase we learn a latent skill representation of sub-trajectories 
 </td></tr>
 </tbody>
 </table> -->
+
+<table width=800px><tr><td> <p align="justify" width="20%">
+We also evaluate our method in the real world with a kitchen environment involving eight food items, receptacles, a stove, and a serving area. We first collect a play dataset of exploratory interactions involving the food items and receptacles. For our target tasks, we consider setting up breakfast, and cooking a meal.
+</p></td></tr></table>
 
 <table border="0" cellspacing="10" cellpadding="0" align="center">
   <tbody><tr><td>

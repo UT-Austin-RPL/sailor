@@ -1,0 +1,333 @@
+{
+    "algo_name": "spl",
+    "experiment": {
+        "name": "test",
+        "validate": false,
+        "logging": {
+            "terminal_output_to_txt": true,
+            "log_tb": true,
+            "log_wandb": true
+        },
+        "save": {
+            "enabled": true,
+            "every_n_seconds": null,
+            "every_n_epochs": null,
+            "epochs": [500, 1000, 1500, 2000],
+            "on_best_validation": false,
+            "on_best_rollout_return": false,
+            "on_best_rollout_success_rate": true
+        },
+        "epoch_every_n_steps": 100,
+        "validation_epoch_every_n_steps": 10,
+        "env": null,
+        "additional_envs": null,
+        "render": false,
+        "render_video": true,
+        "keep_all_videos": true,
+        "video_skip": 5,
+        "rollout": {
+            "enabled": true,
+            "n": 100,
+            "horizon": 400,
+            "rate": 100,
+            "warmstart": 0,
+            "terminate_on_success": true
+        }
+    },
+    "train": {
+        "data_prior": null,
+        "data_target": null,
+        "output_dir": null,
+        "num_data_workers": 0,
+        "hdf5_cache_mode": "low_dim",
+        "hdf5_use_swmr": true,
+        "hdf5_normalize_obs": false,
+        "hdf5_filter_key": null,
+        "seq_length": 20,
+        "frame_stack": 10,
+        "dataset_keys": [
+            "actions"
+        ],
+        "goal_mode": null,
+        "cuda": true,
+        "batch_size": 100,
+        "num_epochs": 2000,
+        "seed": 1
+    },
+    "algo": {
+        "training_mode": "pt",
+        "train_skill": true,
+        "train_policy": true,
+        "retrieval": {
+            "enabled": true,
+            "type": "z"
+        },
+        "policy_ds_weights": {
+            "target": 1.0,
+            "retrieval": 1.0
+        },
+        "skill_ds_weights": {
+            "prior": 1.0,
+            "target": 1.0
+        },
+        "skill": {
+            "skill_params": {
+                "skill_len": 10
+            },
+            "optim_params": {
+                "skill": {
+                    "learning_rate": {
+                        "initial": 5e-4,
+                        "decay_factor": 0.1,
+                        "epoch_schedule": []
+                    },
+                    "regularization": {
+                        "L2": 0.0
+                    }
+                },
+                "inverse_dyn": {
+                    "learning_rate": {
+                        "initial": 1e-4,
+                        "decay_factor": 0.1,
+                        "epoch_schedule": []
+                    },
+                    "regularization": {
+                        "L2": 0.0
+                    }
+                },
+                "temp_dist_pred": {
+                    "learning_rate": {
+                        "initial": 1e-4,
+                        "decay_factor": 0.1,
+                        "epoch_schedule": []
+                    },
+                    "regularization": {
+                        "L2": 0.0
+                    }
+                }
+            },
+            "slowness": {
+                "window_len": 5,
+                "weight": 1e-3
+            },
+            "temp_dist_pred": {
+                "window_len": 50,
+                "weight": 1e-6,
+                "layer_dims": [
+                    128,
+                    128
+                ]
+            },
+            "inverse_dyn": {
+                "weight": 1e-1,
+                "layer_dims": [
+                    1024,
+                    1024
+                ]
+            },
+            "vae": {
+                "rnn": {
+                    "hidden_dim": 400,
+                    "rnn_type": "LSTM",
+                    "num_layers": 2,
+                    "kwargs": {
+                        "bidirectional": false
+                    }
+                },
+                "latent_dim": 64,
+                "kl_weight": 1e-5,
+                "latent_clip": null,
+                "decoder": {
+                    "is_conditioned": true,
+                    "reconstruction_sum_across_elements": false
+                },
+                "prior": {
+                    "learn": true,
+                    "is_conditioned": true,
+                    "use_gmm": false,
+                    "gmm_num_modes": 5,
+                    "gmm_learn_weights": false,
+                    "use_categorical": false,
+                    "categorical_dim": 10,
+                    "categorical_gumbel_softmax_hard": false,
+                    "categorical_init_temp": 1.0,
+                    "categorical_temp_anneal_step": 0.001,
+                    "categorical_min_temp": 0.3
+                },
+                "encoder_layer_dims": [
+                    1024,
+                    1024
+                ],
+                "decoder_layer_dims": [
+                    1024,
+                    1024
+                ],
+                "prior_layer_dims": [
+                    1024,
+                    1024
+                ]
+            }
+        },
+        "policy": {
+            "dataset_conditioned": true,
+            "skill_params": {
+                "model_ckpt_path": null
+            },
+            "optim_params": {
+                "policy": {
+                    "learning_rate": {
+                        "initial": 0.001,
+                        "decay_factor": 0.1,
+                        "epoch_schedule": []
+                    },
+                    "regularization": {
+                        "L2": 0.0
+                    }
+                }
+            },
+            "loss": {
+                "l2_decoding_weight": 0.0,
+                "l2_weight": 1.0,
+                "l1_weight": 0.0,
+                "cos_weight": 0.0
+            },
+            "actor_layer_dims": [],
+            "gmm": {
+                "enabled": false,
+                "num_modes": 5,
+                "min_std": 1e-6,
+                "std_activation": "softplus",
+                "low_noise_eval": true
+            },
+            "rnn": {
+                "enabled": true,
+                "horizon": 10,
+                "hidden_dim": 400,
+                "rnn_type": "LSTM",
+                "num_layers": 2,
+                "open_loop": false,
+                "kwargs": {
+                    "bidirectional": false
+                }
+            }
+        }
+    },
+    "observation": {
+        "modalities": {
+            "obs": {
+                "low_dim": [],
+                "rgb": [],
+                "depth": [],
+                "scan": []
+            },
+            "goal": {
+                "low_dim": [],
+                "rgb": [],
+                "depth": [],
+                "scan": []
+            }
+        },
+        "encoder": {
+            "low_dim": {
+                "core_class": null,
+                "core_kwargs": {},
+                "obs_randomizer_class": null,
+                "obs_randomizer_kwargs": {}
+            },
+            "rgb": {
+                "core_class": "VisualCore",
+                "core_kwargs": {
+                    "feature_dimension": 64,
+                    "flatten": true,
+                    "backbone_class": "ResNet18Conv",
+                    "backbone_kwargs": {
+                        "pretrained": false,
+                        "input_coord_conv": false
+                    },
+                    "pool_class": "SpatialSoftmax",
+                    "pool_kwargs": {
+                        "num_kp": 32,
+                        "learnable_temperature": false,
+                        "temperature": 1.0,
+                        "noise_std": 0.0,
+                        "output_variance": false
+                    }
+                },
+                "obs_randomizer_class": "CropRandomizer",
+                "obs_randomizer_kwargs": {
+                    "crop_height": 76,
+                    "crop_width": 76,
+                    "num_crops": 1,
+                    "pos_enc": false
+                }
+            },
+            "depth": {
+                "core_class": "VisualCore",
+                "core_kwargs": {
+                    "feature_dimension": 64,
+                    "flatten": true,
+                    "backbone_class": "ResNet18Conv",
+                    "backbone_kwargs": {
+                        "pretrained": false,
+                        "input_coord_conv": false
+                    },
+                    "pool_class": "SpatialSoftmax",
+                    "pool_kwargs": {
+                        "num_kp": 32,
+                        "learnable_temperature": false,
+                        "temperature": 1.0,
+                        "noise_std": 0.0,
+                        "output_variance": false
+                    }
+                },
+                "obs_randomizer_class": null,
+                "obs_randomizer_kwargs": {
+                    "crop_height": 76,
+                    "crop_width": 76,
+                    "num_crops": 1,
+                    "pos_enc": false
+                }
+            },
+            "scan": {
+                "core_class": "ScanCore",
+                "core_kwargs": {
+                    "feature_dimension": 64,
+                    "flatten": true,
+                    "pool_class": "SpatialSoftmax",
+                    "pool_kwargs": {
+                        "num_kp": 32,
+                        "learnable_temperature": false,
+                        "temperature": 1.0,
+                        "noise_std": 0.0,
+                        "output_variance": false
+                    },
+                    "conv_activation": "relu",
+                    "conv_kwargs": {
+                        "out_channels": [
+                            32,
+                            64,
+                            64
+                        ],
+                        "kernel_size": [
+                            8,
+                            4,
+                            2
+                        ],
+                        "stride": [
+                            4,
+                            2,
+                            1
+                        ]
+                    }
+                },
+                "obs_randomizer_class": null,
+                "obs_randomizer_kwargs": {
+                    "crop_height": 76,
+                    "crop_width": 76,
+                    "num_crops": 1,
+                    "pos_enc": false
+                }
+            }
+        }
+    }
+}
